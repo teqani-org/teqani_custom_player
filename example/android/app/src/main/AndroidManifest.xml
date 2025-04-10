@@ -11,17 +11,7 @@
         android:icon="@mipmap/ic_launcher"
         android:hardwareAccelerated="true"
         android:usesCleartextTraffic="true">
-        
-        <!-- Add YouTube API Key Configuration Here -->
-        <meta-data
-            android:name="com.google.android.youtube.API_KEY"
-            android:value="AIzaSyC_q1PLUAzcyRZsgeuS4qxukVhjC_WZCdg" />
-        
-        <!-- Configuration for the YouTube player -->
-        <meta-data
-            android:name="com.teqani.youtube_player.API_KEY"
-            android:value="AIzaSyAXA-o5l4uJsoIYOZm3f3sN_qj8WxbMIiA"
-            tools:replace="android:value" />
+
             
         <activity
             android:name=".MainActivity"
