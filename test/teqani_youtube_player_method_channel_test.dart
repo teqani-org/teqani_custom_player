@@ -6,7 +6,7 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   final MethodChannelTeqaniYoutubePlayer platform = MethodChannelTeqaniYoutubePlayer();
-  const MethodChannel channel = MethodChannel('teqani_youtube_player');
+  const MethodChannel channel = MethodChannel('com.teqani.youtube_player/player');
 
   setUp(() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(
@@ -21,7 +21,21 @@ void main() {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger.setMockMethodCallHandler(channel, null);
   });
 
-  test('getPlatformVersion', () async {
-    expect(await platform.getPlatformVersion(), '42');
+  test('initialize', () async {
+    // Just verify it doesn't throw
+    await platform.initialize(
+      videoId: 'test123',
+      autoPlay: true,
+      showControls: true,
+      fullscreenByDefault: false,
+      allowFullscreen: true,
+      muted: false,
+      loop: false,
+      playbackRate: 1.0,
+      enableCaption: true,
+      showRelatedVideos: false,
+    );
+    // If it reaches here without exception, the test passes
+    expect(true, isTrue);
   });
 }

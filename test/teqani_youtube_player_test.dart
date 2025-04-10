@@ -7,6 +7,10 @@ class MockTeqaniYoutubePlayerPlatform
     with MockPlatformInterfaceMixin
     implements TeqaniYoutubePlayerPlatform {
 
+  bool initializeCalled = false;
+  bool playCalled = false;
+  bool pauseCalled = false;
+  
   @override
   Future<String?> getPlatformVersion() => Future.value('42');
   
@@ -24,13 +28,19 @@ class MockTeqaniYoutubePlayerPlatform
     required bool showRelatedVideos,
     int? startAt,
     int? endAt,
-  }) async {}
+  }) async {
+    initializeCalled = true;
+  }
   
   @override
-  Future<void> play() async {}
+  Future<void> play() async {
+    playCalled = true;
+  }
   
   @override
-  Future<void> pause() async {}
+  Future<void> pause() async {
+    pauseCalled = true;
+  }
   
   @override
   Future<void> seekTo(double seconds) async {}
@@ -68,12 +78,31 @@ void main() {
     expect(initialPlatform, isInstanceOf<MethodChannelTeqaniYoutubePlayer>());
   });
 
-  test('getPlatformVersion', () async {
-    // We only need to mock the platform for this test
+  test('Player methods call through to platform implementation', () async {
     final MockTeqaniYoutubePlayerPlatform fakePlatform = MockTeqaniYoutubePlayerPlatform();
     TeqaniYoutubePlayerPlatform.instance = fakePlatform;
 
-    // Call getPlatformVersion on the platform instance, not on the widget
-    expect(await TeqaniYoutubePlayerPlatform.instance.getPlatformVersion(), '42');
+    // Test initialize method
+    await TeqaniYoutubePlayerPlatform.instance.initialize(
+      videoId: 'testVideo',
+      autoPlay: true,
+      showControls: true,
+      fullscreenByDefault: false,
+      allowFullscreen: true,
+      muted: false,
+      loop: false,
+      playbackRate: 1.0,
+      enableCaption: true,
+      showRelatedVideos: false,
+    );
+    expect(fakePlatform.initializeCalled, true);
+    
+    // Test play method
+    await TeqaniYoutubePlayerPlatform.instance.play();
+    expect(fakePlatform.playCalled, true);
+    
+    // Test pause method
+    await TeqaniYoutubePlayerPlatform.instance.pause();
+    expect(fakePlatform.pauseCalled, true);
   });
 }
