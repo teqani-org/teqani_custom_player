@@ -29,8 +29,5 @@
       </intent-filter>
     </activity>
     
-    <meta-data
-      android:name="com.google.android.youtube.API_KEY"
-      android:value="AIzaSyC_q1PLUAzcyRZsgeuS4qxukVhjC_WZCdg"/>
   </application>
 </manifest>

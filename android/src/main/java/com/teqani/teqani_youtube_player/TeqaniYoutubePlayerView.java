@@ -87,18 +87,9 @@ public class TeqaniYoutubePlayerView implements PlatformView, MethodChannel.Meth
     private void initializePlayer(Map<String, Object> creationParams) {
         Log.d("YouTubePlayer", "Initializing Player with params: " + creationParams);
 
-        // Extract API key and video ID
-        String apiKey = null;
+        // Extract video ID
         String videoId = null;
         
-        // Get API key
-        if (creationParams != null && creationParams.containsKey("apiKey")) {
-            apiKey = (String) creationParams.get("apiKey");
-            Log.d("YouTubePlayer", "Using API Key: " + apiKey);
-        } else {
-            Log.e("YouTubePlayer", "API Key is missing in creationParams");
-        }
-
         // Get video ID
         if (creationParams != null && creationParams.containsKey("videoId")) {
             videoId = (String) creationParams.get("videoId");

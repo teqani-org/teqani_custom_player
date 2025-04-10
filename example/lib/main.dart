@@ -34,7 +34,6 @@ class PlayerDemoPageState extends State<PlayerDemoPage> {
 
   // Demo video ID (YouTube sample video)
   final String _videoId = 'aKq8bkY5eTU';
-  final String _apiKey = 'AIzaSyC_q1PLUAzcyRZsgeuS4qxukVhjC_WZCdg';
 
   // Track player state
   bool isPlaying = false;
@@ -123,7 +122,6 @@ class PlayerDemoPageState extends State<PlayerDemoPage> {
           durationType: WatermarkDuration.always,
         ),
       ),
-      apiKey: _apiKey,
       onReady: () {
         if (kDebugMode) {
           print('Player is ready!');

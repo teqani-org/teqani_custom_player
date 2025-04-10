@@ -16,7 +16,6 @@ class TeqaniYoutubePlayerController extends ChangeNotifier {
   /// Constructor for TeqaniYoutubePlayerController
   TeqaniYoutubePlayerController({
     required this.initialConfig,
-    this.apiKey,
     this.onReady,
     this.onStateChanged,
     this.onError,
@@ -27,11 +26,9 @@ class TeqaniYoutubePlayerController extends ChangeNotifier {
     // Initialize WebViewController immediately
     webViewController = WebViewController();
   }
+  
   /// The player configuration
   final PlayerConfig initialConfig;
-  
-  /// YouTube API Key
-  final String? apiKey;
   
   /// WebViewController for interacting with the WebView
   late final WebViewController webViewController;
