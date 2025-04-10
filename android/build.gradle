@@ -1,0 +1,69 @@
+group = "com.teqani.teqani_youtube_player"
+version = "1.0"
+
+buildscript {
+    ext.kotlin_version = '1.9.22'
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.1.4'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        // Add repository for YouTube Android Player API
+        maven { url "https://jitpack.io" }
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    namespace = "com.teqani.teqani_youtube_player"
+
+    compileSdkVersion 34
+
+    defaultConfig {
+        minSdkVersion 21
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    lintOptions {
+        disable 'InvalidPackage'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dependencies {
+        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+        implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:12.1.0'
+        
+        // Lifecycle dependencies
+        implementation "androidx.lifecycle:lifecycle-common-java8:2.6.2"
+        implementation "androidx.lifecycle:lifecycle-runtime:2.6.2"
+        
+        testImplementation "junit:junit:4.13.2"
+        testImplementation "org.mockito:mockito-core:5.0.0"
+    }
+
+    testOptions {
+        unitTests.all {
+            testLogging {
+               events "passed", "skipped", "failed", "standardOut", "standardError"
+               outputs.upToDateWhen {false}
+               showStandardStreams = true
+            }
+        }
+    }
+}
