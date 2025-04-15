@@ -1,7 +1,7 @@
 name: teqani_youtube_player
 description: "A fully custom, dependency-free video player specifically optimized for YouTube video streams on both iOS and Android."
 version: 1.0.0
-homepage: https://github.com/teqani/teqani_youtube_player
+homepage: https://github.com/teqani-org/teqani_custom_player
 
 environment:
   sdk: ^3.7.0
